@@ -8,6 +8,7 @@ type TabProps = {
     Attendance: undefined;
     Scan: undefined;
     Presence: undefined;
+    Profile: undefined;
 }
 
 const Tab = createBottomTabNavigator<TabProps>();
@@ -25,17 +26,21 @@ interface MyTabsProps {}
 export const Routes: React.FunctionComponent<MyTabsProps> = () => {
     return (
         <Tab.Navigator>
+            <Tab.Screen name="Scan" component={QRCodeScreen} options={{
+                title: 'Ler QR Code',
+                tabBarIcon: () => <MaterialIcons name="qr-code-scanner" size={24} /> 
+            }} />
+            <Tab.Screen name="Presence" component={Screen} options={{
+                title: 'Presentes Hoje',
+                tabBarIcon: () => <MaterialIcons name="groups" size={24} /> 
+            }} />
             <Tab.Screen name="Attendance" component={Screen} options={{
                 title: 'Minhas Faltas',
                 tabBarIcon: () => <MaterialIcons name="back-hand" size={24} /> 
                 }} />
-            <Tab.Screen name="Scan" component={QRCodeScreen} options={{
-                title: 'Ler QR Code',
-                tabBarIcon: () => <MaterialIcons name="qr-code-scanner" size={24} /> 
-                }} />
-            <Tab.Screen name="Presence" component={Screen} options={{
-                title: 'Presentes Hoje',
-                tabBarIcon: () => <MaterialIcons name="groups" size={24} /> 
+            <Tab.Screen name="Profile" component={Screen} options={{
+                title: 'Perfil',
+                tabBarIcon: () => <MaterialIcons name="person" size={24} /> 
                 }} />
         </Tab.Navigator>
     )
